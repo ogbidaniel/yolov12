@@ -1,14 +1,22 @@
 from ultralytics import YOLO
+
 print("Running inference on the specified test image...")
 
-# Use forward slashes to avoid syntax warnings
-model_path = "models/poultry-yolo12n-v1.pt"
+# Fix: Use forward slashes to avoid syntax warnings
+model_path = "models/poultry-yolov12n-v1.pt"
 model_inference = YOLO(model_path)
 
 # Use forward slashes here too
-img_path = "data/sampleimages/poultry-test-1.jpg"
+img_path = "sampleimages/poultry-test-1.jpg"
 
-# Run inference
-results = model_inference(img_path, save=True)
+# Run inference, but do not save the file
+results = model_inference(img_path, save=False)
 
-print("Inference complete. Results saved.")
+# results is a list, so get the first result
+if results:
+    # Call the .show() method to display the image in a window
+    results[0].show()
+    
+    print("Inference complete. Press 'q' in the image window to close.")
+else:
+    print("No results were returned.")
