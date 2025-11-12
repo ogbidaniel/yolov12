@@ -12,9 +12,7 @@ The current model is a YOLOv12n variant trained on a custom dataset of poultry i
 
 Below is a sample inference video demonstrating the model's detection and tracking capabilities on poultry behavior:
 
-<video src="https://github.com/user-attachments/assets/sample-inference-1.mp4" controls></video>
-
-Alternatively, you can view the video directly here: [assets/sample-inference-1.mp4](assets/sample-inference-1.mp4)
+![Inference Preview](assets/inference_preview.gif)
 
 The model successfully detects and tracks:
 - **Hens** with real-time behavior classification (Feeding, Drinking, Idle)

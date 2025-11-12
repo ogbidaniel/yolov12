@@ -1,34 +1,3 @@
-# from ultralytics import YOLO
-# import cv2
-
-# print("Running inference on the specified test video...")
-
-# # model path
-# model_path = "models/poultry-yolov12n-v1.pt"
-# model_inference = YOLO(model_path)
-
-# # video path
-# video_path = "samplevideos/poultry-vid-01.mp4"
-
-# # Run inference on video with stream=True for frame-by-frame processing
-# results = model_inference(video_path, stream=True, save=False)
-
-# # Process and display each frame
-# for result in results:
-#     # Get the annotated frame
-#     annotated_frame = result.plot()
-    
-#     # Display the frame
-#     cv2.imshow("Poultry Detection", annotated_frame)
-    
-#     # Press 'q' to exit
-#     if cv2.waitKey(1) & 0xFF == ord('q'):
-#         break
-
-# # Clean up
-# cv2.destroyAllWindows()
-# print("Inference complete.")
-
 # main.py
 from ultralytics import YOLO
 import cv2
@@ -66,7 +35,6 @@ def main():
     print(f"Starting inference on {VIDEO_PATH} at {fps:.1f} FPS...")
     print("Press 'q' in the window to stop.")
 
-    # FIXED: Use AUTOSIZE to keep original resolution and aspect ratio
     cv2.namedWindow("Poultry Vision System", cv2.WINDOW_AUTOSIZE)
 
     while cap.isOpened():
