@@ -2,11 +2,24 @@
 
 This repository contains a YOLOv12-based model for detecting and tracking poultry in a cage-free environment. The model is trained to identify hens, feeders, and waterers to support automated monitoring.
 
-The ultimate goal of this research is to implement automated detection of key behavioral phenotypes, such as feeding and drinking, to assess animal welfare and thermotolerance, as outlined in the [accompanying research paper](https://www.mdpi.com/2624-7402/6/3/155).
+The ultimate goal of this research is to implement and extend automated detection of key behavioral phenotypes, such as feeding and drinking, to assess animal welfare and thermotolerance, as outlined in the [accompanying research paper](https://www.mdpi.com/2077-0472/15/18/1963).
 
 ## Model: `poultry-yolo12n-v1`
 
 The current model is a YOLOv12n variant trained on a custom dataset of poultry images.
+
+## Sample Inference
+
+Below is a sample inference video demonstrating the model's detection and tracking capabilities on poultry behavior:
+
+<video src="https://github.com/user-attachments/assets/sample-inference-1.mp4" controls></video>
+
+Alternatively, you can view the video directly here: [assets/sample-inference-1.mp4](assets/sample-inference-1.mp4)
+
+The model successfully detects and tracks:
+- **Hens** with real-time behavior classification (Feeding, Drinking, Idle)
+- **Feeders** and **Waterers** as resource zones
+- Individual hen tracking with cumulative time spent feeding and drinking
 
 ### Training Results
 Here are the key performance metrics from the `poultry_yolo12n_run1` training run:
@@ -53,12 +66,41 @@ This project is built on a forked version of YOLOv12. To set up the environment,
 
 ## How to Run Inference
 
-You can run inference on a sample image using `main.py`. The model file (`poultry-yolo12n-v1.pt`) is expected to be in the `models/` directory (which is ignored by Git).
+The `main.py` script runs real-time inference with behavior tracking on video input. The model displays detection results in a popup window.
 
-1.  Place your trained `.pt` file in a `models/` folder.
-2.  Run the script:
+### Prerequisites
+1. Place your trained `.pt` model file in the `models/` directory
+2. Ensure you have sample videos in the `samplevideos/` directory
 
-    ```bash
-    python main.py
-    ```
-3.  Results will be saved in the `runs/detect/predict` folder.
+### Running Inference
+
+To run inference on a video:
+
+```bash
+python main.py
+```
+
+### Customizing Inference
+
+To use your own model or video, edit the configuration paths in `main.py`:
+
+```python
+# --- CONFIGURATION ---
+MODEL_PATH = "models/your-model-name.pt"  # Update to your model path
+VIDEO_PATH = "samplevideos/your-video.mp4"  # Update to your video path
+```
+
+**Class Map**: If your model has different classes, update the `CLASS_MAP` dictionary:
+
+```python
+CLASS_MAP = {
+    0: 'class_name_1',   
+    1: 'class_name_2',   
+    2: 'class_name_3'   
+}
+```
+
+### Controls
+- Press **'q'** in the video window to stop inference and exit
+- The script displays real-time detection with behavior tracking overlays
+- No output is saved by default (results are only displayed)
